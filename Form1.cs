@@ -141,5 +141,14 @@ namespace Project_07
                 return temp;
             }   
         }
+
+
+        private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OrderForm orderForm = new OrderForm();
+            orderForm.TopLevel = true;
+            orderForm.Show();
+
+        }
     }
 }

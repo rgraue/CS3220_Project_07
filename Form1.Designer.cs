@@ -29,7 +29,6 @@ namespace Project_07
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.groupBoxSelect = new System.Windows.Forms.GroupBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.buttonClear = new System.Windows.Forms.Button();
@@ -47,17 +46,19 @@ namespace Project_07
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBoxTotal = new System.Windows.Forms.TextBox();
             this.buttonTotal = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.listBoxTotTrans = new System.Windows.Forms.ListBox();
-            this.buttonTotalTrans = new System.Windows.Forms.Button();
-            this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.textBoxTransSummary = new System.Windows.Forms.TextBox();
+            this.buttonTotalTrans = new System.Windows.Forms.Button();
+            this.listBoxTotTrans = new System.Windows.Forms.ListBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBoxSelect.SuspendLayout();
             this.groupBoxToppings.SuspendLayout();
             this.groupBoxFlavor.SuspendLayout();
             this.groupBoxSummary.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxSelect
@@ -68,7 +69,7 @@ namespace Project_07
             this.groupBoxSelect.Controls.Add(this.buttonAdd);
             this.groupBoxSelect.Controls.Add(this.groupBoxToppings);
             this.groupBoxSelect.Controls.Add(this.groupBoxFlavor);
-            this.groupBoxSelect.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxSelect.Location = new System.Drawing.Point(12, 27);
             this.groupBoxSelect.Name = "groupBoxSelect";
             this.groupBoxSelect.Size = new System.Drawing.Size(674, 242);
             this.groupBoxSelect.TabIndex = 0;
@@ -206,7 +207,7 @@ namespace Project_07
             this.groupBoxSummary.Controls.Add(this.textBox1);
             this.groupBoxSummary.Controls.Add(this.textBoxTotal);
             this.groupBoxSummary.Controls.Add(this.buttonTotal);
-            this.groupBoxSummary.Location = new System.Drawing.Point(13, 276);
+            this.groupBoxSummary.Location = new System.Drawing.Point(13, 291);
             this.groupBoxSummary.Name = "groupBoxSummary";
             this.groupBoxSummary.Size = new System.Drawing.Size(672, 70);
             this.groupBoxSummary.TabIndex = 1;
@@ -240,30 +241,24 @@ namespace Project_07
             this.buttonTotal.UseVisualStyleBackColor = true;
             this.buttonTotal.Click += new System.EventHandler(this.buttonTotal_Click);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.textBoxTransSummary);
             this.groupBox1.Controls.Add(this.buttonTotalTrans);
             this.groupBox1.Controls.Add(this.listBoxTotTrans);
-            this.groupBox1.Location = new System.Drawing.Point(710, 15);
+            this.groupBox1.Location = new System.Drawing.Point(710, 30);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(197, 331);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "All Customer Orders";
             // 
-            // listBoxTotTrans
+            // textBoxTransSummary
             // 
-            this.listBoxTotTrans.FormattingEnabled = true;
-            this.listBoxTotTrans.Location = new System.Drawing.Point(17, 19);
-            this.listBoxTotTrans.Name = "listBoxTotTrans";
-            this.listBoxTotTrans.Size = new System.Drawing.Size(161, 173);
-            this.listBoxTotTrans.TabIndex = 0;
+            this.textBoxTransSummary.Location = new System.Drawing.Point(17, 286);
+            this.textBoxTransSummary.Name = "textBoxTransSummary";
+            this.textBoxTransSummary.Size = new System.Drawing.Size(161, 20);
+            this.textBoxTransSummary.TabIndex = 2;
             // 
             // buttonTotalTrans
             // 
@@ -275,26 +270,49 @@ namespace Project_07
             this.buttonTotalTrans.UseVisualStyleBackColor = true;
             this.buttonTotalTrans.Click += new System.EventHandler(this.buttonTotalTrans_Click);
             // 
-            // contextMenuStrip2
+            // listBoxTotTrans
             // 
-            this.contextMenuStrip2.Name = "contextMenuStrip2";
-            this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
+            this.listBoxTotTrans.FormattingEnabled = true;
+            this.listBoxTotTrans.Location = new System.Drawing.Point(17, 19);
+            this.listBoxTotTrans.Name = "listBoxTotTrans";
+            this.listBoxTotTrans.Size = new System.Drawing.Size(161, 173);
+            this.listBoxTotTrans.TabIndex = 0;
             // 
-            // textBoxTransSummary
+            // menuStrip1
             // 
-            this.textBoxTransSummary.Location = new System.Drawing.Point(17, 286);
-            this.textBoxTransSummary.Name = "textBoxTransSummary";
-            this.textBoxTransSummary.Size = new System.Drawing.Size(161, 20);
-            this.textBoxTransSummary.TabIndex = 2;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(949, 24);
+            this.menuStrip1.TabIndex = 3;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ordersToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // ordersToolStripMenuItem
+            // 
+            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ordersToolStripMenuItem.Text = "Orders";
+            this.ordersToolStripMenuItem.Click += new System.EventHandler(this.ordersToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(949, 364);
+            this.ClientSize = new System.Drawing.Size(949, 422);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBoxSummary);
             this.Controls.Add(this.groupBoxSelect);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ice Cream Shop";
@@ -308,7 +326,10 @@ namespace Project_07
             this.groupBoxSummary.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -331,12 +352,13 @@ namespace Project_07
         private System.Windows.Forms.Button buttonTotal;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox textBoxTransSummary;
         private System.Windows.Forms.Button buttonTotalTrans;
         private System.Windows.Forms.ListBox listBoxTotTrans;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
     }
 }
 
