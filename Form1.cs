@@ -23,7 +23,6 @@ namespace Project_07
 
         private decimal totalPrice = 0.00M;
 
-        //private string stringConnect = "data source = (local);DataBase=Project07; Integrated Security = SSPI";      // DATABASE = Project07
         private SqlConnection conn = new SqlConnection("data source = (local);DataBase=Project07; Integrated Security = SSPI");
         
 
@@ -92,15 +91,20 @@ namespace Project_07
             int id = getUniqueId();
             string values = id + ",'" + date + "'" + "," +  "'"+ time + "'" + "," +  totalPrice;
 
-            //conn.ConnectionString = stringConnect;
-            conn.Open();
-            SqlCommand add = new SqlCommand("Insert Into [Orders] (Id, Date, Time, Price) values (" + values + ")", conn);
-            add.ExecuteNonQuery();
+            try
+            {
+                conn.Open();
+                SqlCommand add = new SqlCommand("Insert Into [Orders] (Id, Date, Time, Price) values (" + values + ")", conn);
+                add.ExecuteNonQuery();
 
-            textBoxTotal.Text = "$" + totalPrice;
+                textBoxTotal.Text = "$" + totalPrice;
 
-            listBoxTotTrans.Items.Add(totalPrice);
-            conn.Close();
+                listBoxTotTrans.Items.Add(totalPrice);
+                conn.Close();
+            } catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }          
         }
 
         /// <summary>
@@ -110,7 +114,6 @@ namespace Project_07
         /// <param name="e">arguments included with the event</param>
         private void buttonTotalTrans_Click(object sender, EventArgs e)
         {
-
             Decimal dayTotal = 0.0M;
             foreach (Decimal d in listBoxTotTrans.Items)
             {
@@ -123,31 +126,37 @@ namespace Project_07
         /// <summary>
         /// returns a unique primary key int for each entity in the database. Recursivley checks to find unique int
         /// </summary>
-        /// <returns>unique int for primary key</returns>
+        /// <returns>unique int for primary key. returns -1 if an error occurs in sql search</returns>
         private int getUniqueId ()
         {
             try
             {
                 conn.Open();
+                Random rand = new Random();
+                int temp = rand.Next(100001);
+                SqlCommand search = new SqlCommand("Select Id From Orders Where Id =" + temp, conn);        // sql query for id num
+                SqlDataReader reader = search.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    return getUniqueId();
+                }
+                else
+                {
+                    conn.Close();
+                    return temp;
+                }
             } catch (Exception exception)
             {
                 Console.WriteLine(exception.Message);
             }
-            Random rand = new Random();
-            int temp = rand.Next(100001);
-            SqlCommand search = new SqlCommand("Select Id From Orders Where Id =" + temp, conn);        // sql query for id num
-            SqlDataReader reader = search.ExecuteReader();
-            if (reader.HasRows)
-            {
-                return getUniqueId();     
-            } else
-            {
-                conn.Close();
-                return temp;
-            }   
+            return -1;
         }
 
-
+        /// <summary>
+        /// Opens a new windor for the order price entering menu.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ordersToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OrderForm orderForm = new OrderForm();
